@@ -1,0 +1,55 @@
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-sm-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="text-decoration-none" [routerLink]="['/orders']">Orders</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a class="text-decoration-none active text-muted">Create New Order</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <form (ngSubmit)="saveOrder()" [formGroup]="orderForm">
+                <div class="block w-100">
+                    <mat-form-field class="w-50">
+                        <mat-label>Customer Name: </mat-label>
+                        <input matInput placeholder="Enter customer name" formControlName="customer" />
+                        <span class="text-danger" *ngIf="orderForm.controls.customer?.errors?.required && (orderForm.controls.customer?.dirty || !orderForm.controls.customer?.pristine)"
+                            >Customer name is required</span
+                        >
+                    </mat-form-field>
+                </div>
+                <div class="block w-100">
+                    <mat-form-field class="w-50">
+                        <mat-label>Ordered By: </mat-label>
+                        <input matInput placeholder="Enter your name" formControlName="orderedBy" />
+                        <span class="text-danger" *ngIf="orderForm.controls.orderedBy?.errors?.required && (orderForm.controls.orderedBy?.dirty || !orderForm.controls.orderedBy?.pristine)"
+                            >Your name is required for ordered by</span
+                        >
+                    </mat-form-field>
+                </div>
+                <div class="block w-100">
+                    <mat-form-field appearance="fill" class="w-50">
+                        <mat-label>Select Order Type</mat-label>
+                        <mat-select formControlName="orderType">
+                            <mat-option></mat-option>
+                            <ng-template ngFor let-orderType [ngForOf]="orderTypes" let-i="index">
+                                <mat-option [value]="orderType.key">{{ orderType.displayName }}</mat-option>
+                            </ng-template>
+                        </mat-select>
+                        <span class="text-danger" *ngIf="orderForm.controls.orderType?.errors?.required && (orderForm.controls.orderType?.dirty || !orderForm.controls.orderType?.pristine)"
+                            >Order type is required</span
+                        >
+                    </mat-form-field>
+                </div>
+                <div class="mt-2">
+                    <button type="submit" [disabled]="!orderForm.valid" class="btn btn-sm btn-primary" mat-raised-button color="primary">Save</button>
+                    <button type="button" [disabled]="!orderForm.valid" (click)="saveOrderAsDraft()" class="btn btn-sm ms-2" mat-raised-button color="accent">Save as Draft</button>
+                    <button type="button" *ngIf="draftedOrderRequest" (click)="copyDraftToForm()" class="btn btn-sm ms-4" mat-raised-button color="info">Resume Draft</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

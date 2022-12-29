@@ -1,0 +1,33 @@
+<section class="navbar navbar-expand-lg app-navigation__top-navigation">
+    <div class="container-fluid">
+        <aside class="app-navigation__top-navigation--left app-navigation">
+            <a class="navbar-brand app-navigation__logo" href="/">
+                <img class="app-navigation__logo--image" src="/assets/images/redtms.svg" alt="Kuedeck" height="40" width="120" />
+            </a>
+        </aside>
+        <aside class="app-navigation__top-navigation--right">
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#appNavContainer"
+                aria-controls="appNavContainer"
+                aria-expanded="false"
+                aria-label="Navigation Options">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="appNavContainer">
+                <ul class="navbar-nav biz-registration__top-navigation--list">
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/']"><mat-icon>settings</mat-icon></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/']"><mat-icon>account_circle</mat-icon></a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</section>
+<mat-divider></mat-divider>
+<router-outlet></router-outlet>
