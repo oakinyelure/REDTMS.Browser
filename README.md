@@ -1,6 +1,6 @@
 ## Introduction
 
-The front end part of the REDTMS coding challenge
+The front end part of the REDTMS coding challenge at https://redtms-oakinyelure-web.azurewebsites.net/
 
 ## Tools and Technology
 
@@ -38,6 +38,9 @@ The front end part of the REDTMS coding challenge
 -   Ability to search both on the server and in-memory
 -   Ability to filter by order type
 
-## Deployments
+## Project Information
 
--
+-   CI/CD is at https://github.com/oakinyelure/REDTMS.Browser/blob/develop/.github/workflows/develop_redtms-oakinyelure-web.yml
+-   App URL is at https://redtms-oakinyelure-web.azurewebsites.net/
+-   Application uses the https://redtms-oakinyelure.azurewebsites.net web services
+-   Unit tests are the .spec files

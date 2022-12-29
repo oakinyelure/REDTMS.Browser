@@ -42,9 +42,9 @@
         <div class="col-sm-12">
             <table mat-table [dataSource]="orders" class="mat-elevation-z8">
                 <ng-container matColumnDef="isSelected">
-                    <th mat-header-cell *matHeaderCellDef></th>
+                    <th mat-header-cell *matHeaderCellDef><mat-checkbox (change)="toggleTableSelections($event)" [(ngModel)]="checkAllTableColumns" color="red"> </mat-checkbox></th>
                     <td mat-cell *matCellDef="let element">
-                        <mat-checkbox [(ngModel)]="element.isSelected" color="red"> </mat-checkbox>
+                        <mat-checkbox (change)="checkAllTableColumns = false" [(ngModel)]="element.isSelected" color="red"> </mat-checkbox>
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="key">
@@ -70,6 +70,7 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
+            <div class="text-center text-danger mt-5" *ngIf="!orders?.length">No result found</div>
         </div>
     </div>
 </section>

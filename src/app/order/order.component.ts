@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription, forkJoin, switchMap, of, tap } from 'rxjs';
@@ -26,6 +27,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     selectedOrderType: string;
     draftedOrder: CreateOrderRequest = null;
     searchInputValue: string;
+    checkAllTableColumns: boolean = false;
 
     displayedColumns: string[] = ['isSelected', 'key', 'orderedOn', 'orderedBy', 'orderType', 'customer'];
 
@@ -83,6 +85,7 @@ export class OrderComponent implements OnInit, OnDestroy {
             next: () => {
                 this.orders = this.orders.filter((e) => !e.isSelected);
                 this._snackBar.open('Item(s) deleted successfully');
+                this.checkAllTableColumns = false;
             },
             error: () => {
                 this._snackBar.open('An error occurred by performing this action');
@@ -124,5 +127,11 @@ export class OrderComponent implements OnInit, OnDestroy {
                 this.orders = orders;
             });
         this._$subscriptions.push(subscription);
+    }
+
+    toggleTableSelections(event: MatCheckboxChange): void {
+        this.orders.forEach((order: Order) => {
+            order.isSelected = event.checked;
+        });
     }
 }
