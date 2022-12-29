@@ -53,13 +53,26 @@
                             ],
                             "outputHashing": "all"
                         },
-                        "development": {
-                            "buildOptimizer": false,
-                            "optimization": false,
-                            "vendorChunk": true,
-                            "extractLicenses": false,
-                            "sourceMap": true,
-                            "namedChunks": true
+                        "dev": {
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "1mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.dev.ts"
+                                }
+                            ],
+                            "outputHashing": "all"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -70,11 +83,11 @@
                         "production": {
                             "browserTarget": "redtms-browser-app:build:production"
                         },
-                        "development": {
-                            "browserTarget": "redtms-browser-app:build:development"
+                        "dev": {
+                            "browserTarget": "redtms-browser-app:build:dev"
                         }
                     },
-                    "defaultConfiguration": "development"
+                    "defaultConfiguration": "dev"
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
